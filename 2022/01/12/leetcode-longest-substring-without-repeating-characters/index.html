@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>[解題筆記] LeetCode: Longest Substring Without Repeating Characters (Medium) - Evan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="網站描述">
+
+
+
+<meta name="keywords" content="Javascript, html, CSS">
+
+
+
+    <meta name="description" content="前言我其實不太常刷題，這陣子因為面試開始練手感，後來想想只是解題好像有點可惜，應該紀錄一下自己解題的思維，留一個機會讓未來我可以檢視自己有沒有進步；一方面開始練習寫文章，撰文真的好難。 前一陣子摸了基礎的 counter、pointer 用法之後，以為自己面對一些基礎的 algorithm 應該要秒解才對，結果還是花了比預期還要長的時間。我認為就是還不夠熟練，大部分演算法也不是一個公式就可以帶入得">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[解題筆記] LeetCode: Longest Substring Without Repeating Characters (Medium)">
+<meta property="og:url" content="https://memorysd2013.github.io/2022/01/12/leetcode-longest-substring-without-repeating-characters/index.html">
+<meta property="og:site_name" content="Evan">
+<meta property="og:description" content="前言我其實不太常刷題，這陣子因為面試開始練手感，後來想想只是解題好像有點可惜，應該紀錄一下自己解題的思維，留一個機會讓未來我可以檢視自己有沒有進步；一方面開始練習寫文章，撰文真的好難。 前一陣子摸了基礎的 counter、pointer 用法之後，以為自己面對一些基礎的 algorithm 應該要秒解才對，結果還是花了比預期還要長的時間。我認為就是還不夠熟練，大部分演算法也不是一個公式就可以帶入得">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-01-12T15:03:12.408Z">
+<meta property="article:modified_time" content="2022-01-18T16:46:11.001Z">
+<meta property="article:author" content="Evan">
+<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="front-end">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/lioshi.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">文章列表</a>
+            
+            <a class="navbar-item "
+               href="/categories">分類</a>
+            
+            <a class="navbar-item "
+               href="/tags">標籤</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜尋" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            [解題筆記] LeetCode: Longest Substring Without Repeating Characters (Medium)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <span>2022年01月12日</span>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2><span id="前言">前言</span></h2><p>我其實不太常刷題，這陣子因為面試開始練手感，後來想想只是解題好像有點可惜，應該紀錄一下自己解題的思維，留一個機會讓未來我可以檢視自己有沒有進步；一方面開始練習寫文章，撰文真的好難。</p>
+<p>前一陣子摸了基礎的 counter、pointer 用法之後，以為自己面對一些基礎的 algorithm 應該要秒解才對，結果還是花了比預期還要長的時間。我認為就是還不夠熟練，大部分演算法也不是一個公式就可以帶入得到解答，瞭解特定演算法的思維再判斷不同的情境才能順利解題。</p>
+<span id="more"></span>
+
+<h2><span id="題目">題目</span></h2><p>Given a string <code>s</code>, find the length of the <strong>longest substring</strong> without repeating characters.</p>
+<p><strong>Example:</strong></p>
+<blockquote>
+<p><strong>Input:</strong> s = “pwwkew”<br><strong>Output:</strong> 3<br><strong>Explanation:</strong> The answer is “wke”, with the length of 3.<br>Notice that the answer must be a substring, “pwke” is a subsequence and not a substring.</p>
+</blockquote>
+<p>（⋯更詳細的 example 與條件可以參照 LeetCode 原題目）</p>
+<h2><span id="暴力解">暴力解</span></h2><p>如果沒有 pointer 的概念的話，大概就只能列舉出所有的 substring 組合，並且在每個組合內再跑迴圈檢查是否有重複字串。所以至少需要兩個迴圈來把所有的組合都找出來，然後再執行一個迴圈判斷 substring 有沒有重複，時間複雜度為 <b>𝑂(𝑛<sup>3</sup>)</b>（彷彿已經聽見 run test 時筆電風扇在轉的聲音）</p>
+<p>以前我都會認為「反正先把邏輯寫出來再慢慢優化」就直接暴力解，然後寫完也不知道從何優化起，<strong>因為一開始方向不對了啊！</strong>現在想想暴力解真的是打咩，發現技術跟心境都有慢慢進步也算是蠻欣慰的⋯</p>
+<h2><span id="分析">分析</span></h2><p>盡力用我很爛的中文以一句話描述題目大概是：</p>
+<blockquote>
+<p>回傳字串 s 當中，最長且不重複的字串長度。</p>
+</blockquote>
+<p>關鍵字明顯是「longest」、「without repeating characters」</p>
+<p>第一直覺想到用 map 來找出不重複的字。再來思考最長的長度時有點小卡住，一開始猜想應該是用 pointer，會有兩個指針分別紀錄 start &amp; end，寫出雛型才想起來這就是 <strong>Sliding Window</strong> 啊。</p>
+<p>OK，所以我需要一個物件作為 map，兩個 pointer 以及一個紀錄 maxLength 的變數。接著是邏輯，我用列表的方式把判斷條件列出（其實是不太會寫 pseudocode QQ）：</p>
+<ul>
+<li>指針 <code>r</code> 從 index 0 開始往右找，並將跑過的字符紀錄在 <code>map</code> 當中。</li>
+<li>檢查 <code>l</code> 與 <code>r</code> 之間的長度是不是大於 <code>maxLeng</code> ？如果是就更新 <code>maxLeng</code>。</li>
+<li>如果字符已經在出現過了，<code>map</code> 要移除 <code>l</code> 位置的字符，然後 <code>l</code> 要右移。</li>
+</ul>
+<p>統整這些條件後，完整程式碼就出生了：</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> lengthOfLongestSubstring = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">if</span> (!s.length) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">let</span> map = {};</span><br><span class="line">  <span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-keyword">let</span> r = <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-keyword">let</span> maxLeng = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">while</span> (r &lt; s.length) {</span><br><span class="line">    <span class="hljs-keyword">if</span> (!map[s[r]]) {</span><br><span class="line">      map[s[r]] = <span class="hljs-literal">true</span>;</span><br><span class="line">      <span class="hljs-keyword">if</span> (r - l + <span class="hljs-number">1</span> &gt; maxLeng) {</span><br><span class="line">        maxLeng = r - l + <span class="hljs-number">1</span>;</span><br><span class="line">      }</span><br><span class="line">      r++;</span><br><span class="line">    } <span class="hljs-keyword">else</span> {</span><br><span class="line">      <span class="hljs-keyword">delete</span> map[s[l]];</span><br><span class="line">      l++;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">return</span> maxLeng</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>使用 Sliding Window 時間複雜度為 <b>𝑂(𝑛)</b>。</p>
+<h2><span id="更好的解法">更好的解法</span></h2><p>有寫過 LeetCode 都會知道當你 Submit 答案且通過測試後，LeetCode 會有 Submission Detail 分析你提交的答案，告訴我們花費的時間與記憶題分別優於其他解答多少百分比，以此判斷我們提交的解答是不是還有優化空間。</p>
+<p>有一些刷題網站會有討論區，當中就會有人分享自己的寫法 faster than 99.99% 就會好奇看一下是不是有什麼驚為天人的 idea，但也是遇過不少人故意寫來亂的就是了。</p>
+<p>後來發現官方也有提供解答方案，其中就有提到 Sliding Window，但還有一個 <strong>Sliding Window Optimized</strong> 興奮如我必定要來分析紀錄一下還有什麼肉可以啃。</p>
+<hr>
+<p>優化參考只有 Java 與 python 的版本，我把它轉為 Javascript 後如下：</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> lengthOfLongestSubstring = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">if</span> (!s.length) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">let</span> map = {};</span><br><span class="line">  <span class="hljs-keyword">let</span> l = <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-keyword">let</span> r = <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-keyword">let</span> maxLeng = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">while</span> (r &lt; s.length) {</span><br><span class="line">    <span class="hljs-keyword">if</span> (map[s[r]]) {</span><br><span class="line">      l = <span class="hljs-built_in">Math</span>.max(map[s[r]], l)</span><br><span class="line">    }    </span><br><span class="line">    maxLeng = <span class="hljs-built_in">Math</span>.max(maxLeng, r - l + <span class="hljs-number">1</span>);</span><br><span class="line">    map[s[r]] = r + <span class="hljs-number">1</span>;</span><br><span class="line">    r++;</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  <span class="hljs-keyword">return</span> maxLeng</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>這個優化的關鍵在於 <code>map</code> 儲存的是字符的 index，而我的原始寫法只是紀錄字符有沒有出現過。差異在於我只能判斷<strong>有或沒有</strong>，而紀錄 index 可以直接跳過中間不必再檢查的部分。</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// input: [ A E T C G B C H R ]</span></span><br><span class="line"><span class="hljs-comment">// map: { A: 1, E: 2, T: 3, C: 4, G: 5, B: 6 }</span></span><br><span class="line">A E T C G B C H R</span><br><span class="line">↑           ↑</span><br><span class="line"><span class="hljs-comment">// 遇到了第二個 [C]，原本在 [A] 位置的指針可以直接移到第一個 [C] 之後</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// map: { A: 1, E: 2, T: 3, C: 7, G: 5, B: 6 }</span></span><br><span class="line">A E T C G B C H R</span><br><span class="line">        ↑   ↑</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 一步一步拆解開就會變這樣..</span></span><br><span class="line">.. A E T C G B C ..</span><br><span class="line"> [   E T C G B C ] </span><br><span class="line"> [     T C G B C ] <span class="hljs-comment">// 節省這三步的判斷</span></span><br><span class="line"> [       C G B C ]</span><br><span class="line">           G B C</span><br></pre></td></tr></tbody></table></figure>
+
+<p>儲存 <code>r</code> 的時候有先 +1 再存，應該是為了避免 index 為 0 時 <code>if (map[s[r]])</code> 會被判定為 <code>false</code> 的緣故。運用 HashMap 的概念，當有字符重複時就直接將 <code>l</code> 指定為先前紀錄的 index 的<strong>下一個</strong>位置（儲存之前已經 +1 過了），這樣就可以跳過中間不需要重複判斷的部分。</p>
+<hr>
+<p>另一個我發現的小技巧是以 <code>Math.max</code> 來取代 <code>if</code>。好處是減少使用一個比較運算符（operator）版面也變得更簡潔，但邏輯不變。<code>l</code> 的計算也改用 <code>Math.max</code> 來取代。</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 如果 a &gt; b 就讓 b 的值更新為 a</span></span><br><span class="line"><span class="hljs-keyword">if</span> (newValue &gt; maxLeng) {</span><br><span class="line">  maxLeng = newValue;</span><br><span class="line">}</span><br><span class="line"><span class="hljs-comment">// 等同於</span></span><br><span class="line">maxLeng = <span class="hljs-built_in">Math</span>.max(maxLeng, newValue);</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<p>優化後的時間複雜度一樣是 <b>𝑂(𝑛)</b>。兩者的差異在於最糟的情況下(the worse case)：</p>
+<ul>
+<li>一般的 Sliding Window 時間複雜度為 <b>𝑂(2𝑛)</b></li>
+<li>優化後 Sliding Window 時間複雜度為 <b>𝑂(𝑛)</b></li>
+</ul>
+<p>但這邊只是想做個簡單的紀錄，就不深究 Big O 相關的定義。</p>
+<h2><span id="總結">總結</span></h2><p>我一直把 Sliding Window 當作 pointer 的變體或延伸應用來看，但實際上比起 counter、pointer 好像更需要一些畫面的想像力，這樣在跑邏輯的時候應該更容易明白現在跑到哪一步了，下一步又是什麼情況。（*Heap Sort：有人提到想像力嗎？）</p>
+<p>希望自己解題筆記的系列可以持續，也希望今年可以進步到有能力寫技術文章，就不把它當作什麼新年願望了，第一步踩下去持續做才會有收穫。</p>
+<p>Source:<br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">Longest Substring Without Repeating Characters</a></p>
+<p>Similar Questions:<br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/subarrays-with-k-different-integers/">Subarrays with K Different Integers</a><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximum-erasure-value/">Maximum Erasure Value</a></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/algorithm/">#algorithm</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/leetcode/">#leetcode</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/front-end/">#front-end</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2021/12/26/question-about-crypto/">加密貨幣研究筆記</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2022 Evan&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站內搜尋" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '頁面',
+                CATEGORIES: '分類',
+                TAGS: '標籤',
+                UNTITLED: '(無標題)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
