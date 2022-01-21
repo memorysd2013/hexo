@@ -26,7 +26,7 @@
 <meta property="og:description" content="前言我其實不太常刷題，這陣子因為面試開始練手感，後來想想只是解題好像有點可惜，應該紀錄一下自己解題的思維，留一個機會讓未來我可以檢視自己有沒有進步；一方面開始練習寫文章，撰文真的好難。 前一陣子摸了基礎的 counter、pointer 用法之後，以為自己面對一些基礎的 algorithm 應該要秒解才對，結果還是花了比預期還要長的時間。我認為就是還不夠熟練，大部分演算法也不是一個公式就可以帶入得">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2022-01-12T15:03:12.408Z">
-<meta property="article:modified_time" content="2022-01-18T16:46:11.001Z">
+<meta property="article:modified_time" content="2022-01-21T04:36:45.511Z">
 <meta property="article:author" content="Evan">
 <meta property="article:tag" content="algorithm">
 <meta property="article:tag" content="javascript">
@@ -137,6 +137,11 @@
             
         </span>
         
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/front-end/">front-end</a>
+        </span>
+        
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
@@ -152,6 +157,8 @@
 </blockquote>
 <p>（⋯更詳細的 example 與條件可以參照 LeetCode 原題目）</p>
 <h2><span id="暴力解">暴力解</span></h2><p>如果沒有 pointer 的概念的話，大概就只能列舉出所有的 substring 組合，並且在每個組合內再跑迴圈檢查是否有重複字串。所以至少需要兩個迴圈來把所有的組合都找出來，然後再執行一個迴圈判斷 substring 有沒有重複，時間複雜度為 <b>𝑂(𝑛<sup>3</sup>)</b>（彷彿已經聽見 run test 時筆電風扇在轉的聲音）</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> lengthOfLongestSubstring = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">if</span> (!s.length) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">let</span> maxLeng = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">// 檢查所有的組合</span></span><br><span class="line">  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; s.length; i++) {</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i; j &lt; s.length; j++) {</span><br><span class="line">      <span class="hljs-keyword">if</span> (checkRepeat(s.slice(i, j))) {</span><br><span class="line">        maxLeng = <span class="hljs-built_in">Math</span>.max(maxLeng, j - i + <span class="hljs-number">1</span>);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">// 檢查重複</span></span><br><span class="line">  <span class="hljs-function"><span class="hljs-title">checkRepeat</span>(<span class="hljs-params">str</span>)</span> {</span><br><span class="line">    <span class="hljs-keyword">let</span> map = {}</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> s = <span class="hljs-number">0</span>; s &lt; str.length; s++) {</span><br><span class="line">      <span class="hljs-keyword">if</span> (!map[str[s]]) {</span><br><span class="line">        map[str[s]] = <span class="hljs-literal">true</span>;</span><br><span class="line">      } <span class="hljs-keyword">else</span> {</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">return</span> maxLeng;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
 <p>以前我都會認為「反正先把邏輯寫出來再慢慢優化」就直接暴力解，然後寫完也不知道從何優化起，<strong>因為一開始方向不對了啊！</strong>現在想想暴力解真的是打咩，發現技術跟心境都有慢慢進步也算是蠻欣慰的⋯</p>
 <h2><span id="分析">分析</span></h2><p>盡力用我很爛的中文以一句話描述題目大概是：</p>
 <blockquote>
@@ -210,7 +217,9 @@
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2022/01/19/leetcode-median-of-two-sorted-arrays/">[解題筆記] LeetCode: Median Of Two Sorted Arrays (Hard)</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">

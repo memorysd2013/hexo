@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>[解題筆記] LeetCode: Median Of Two Sorted Arrays (Hard) - Evan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="網站描述">
+
+
+
+<meta name="keywords" content="Javascript, html, CSS">
+
+
+
+    <meta name="description" content="前言一直以來都覺得 Medium 的題目好像就蠻難的，所以也沒有刻意想去挑戰 Hard，這次是上次的題目寫完接著寫下一題，寫完覺得沒有真的很難，也許這題是例外吧，總之順手紀錄一下心得。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[解題筆記] LeetCode: Median Of Two Sorted Arrays (Hard)">
+<meta property="og:url" content="https://memorysd2013.github.io/2022/01/19/leetcode-median-of-two-sorted-arrays/index.html">
+<meta property="og:site_name" content="Evan">
+<meta property="og:description" content="前言一直以來都覺得 Medium 的題目好像就蠻難的，所以也沒有刻意想去挑戰 Hard，這次是上次的題目寫完接著寫下一題，寫完覺得沒有真的很難，也許這題是例外吧，總之順手紀錄一下心得。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-01-19T04:29:06.641Z">
+<meta property="article:modified_time" content="2022-01-21T06:28:33.745Z">
+<meta property="article:author" content="Evan">
+<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="front-end">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/lioshi.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">文章列表</a>
+            
+            <a class="navbar-item "
+               href="/categories">分類</a>
+            
+            <a class="navbar-item "
+               href="/tags">標籤</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜尋" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            [解題筆記] LeetCode: Median Of Two Sorted Arrays (Hard)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <span>2022年01月19日</span>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/front-end/">front-end</a>
+        </span>
+        
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2><span id="前言">前言</span></h2><p>一直以來都覺得 Medium 的題目好像就蠻難的，所以也沒有刻意想去挑戰 Hard，這次是上次的題目寫完接著寫下一題，寫完覺得沒有真的很難，也許這題是例外吧，總之順手紀錄一下心得。</p>
+<span id="more"></span>
+
+<h2><span id="題目">題目</span></h2><p>Given two sorted arrays <code>nums1</code> and <code>nums2</code> of size <code>m</code> and <code>n</code> respectively, return <strong>the median</strong> of the two sorted arrays.</p>
+<p>The overall run time complexity should be <code>O(log (m+n))</code>.</p>
+<p><strong>Example:</strong></p>
+<blockquote>
+<p><strong>Input:</strong> nums1 = [1,2], nums2 = [3,4]<br><strong>Output:</strong> 2.50000<br><strong>Explanation:</strong> merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.</p>
+</blockquote>
+<h2><span id="分析">分析</span></h2><p>題目的 <strong>the median</strong> 用粗體標示，對這個單字沒什麼印象於是稍微查了一下，原來是指 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E4%BD%8D%E6%95%B8">中位數</a>。來自維基百科的定義：</p>
+<blockquote>
+<p>⋯⋯如果數據的個數是奇數，則中間那個數據就是這群數據的中位數；如果數據的個數是偶數，則中間那2個數據的算術平均值就是這群數據的中位數。</p>
+</blockquote>
+<p>搭配題目的要求，就是希望取得兩個陣列合併後的<strong>中間那一項的值</strong>，如果是陣列長度是偶數那就是中間兩項的平均。到這邊我想到兩種做法：</p>
+<ol>
+<li>看到兩個陣列合併就想到 Merge Sort，但仔細看題目發現 <code>nums1</code> 與 <code>nums2</code> 都是 sorted array，所以只靠 pointer 就可以合併，合併後取得中間值。</li>
+<li>直接把兩個陣列合併起來後 <code>sort()</code>，然後取得中間值。</li>
+</ol>
+<h2><span id="pointer">Pointer</span></h2><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> findMedianSortedArrays = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums1, nums2</span>) </span>{</span><br><span class="line">    <span class="hljs-keyword">if</span> ((nums1.length + nums2.length) &lt;= <span class="hljs-number">1</span>) {</span><br><span class="line">      <span class="hljs-keyword">return</span> nums1[<span class="hljs-number">0</span>] || nums2[<span class="hljs-number">0</span>] || <span class="hljs-number">0</span></span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">let</span> mergedArray = []</span><br><span class="line">    <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">while</span> (i &lt; nums1.length &amp;&amp; j &lt; nums2.length) {</span><br><span class="line">      <span class="hljs-keyword">if</span> (nums1[i] &lt; nums2[j]) {</span><br><span class="line">        mergedArray.push(nums1[i]);</span><br><span class="line">        i++;</span><br><span class="line">      } <span class="hljs-keyword">else</span> {</span><br><span class="line">        mergedArray.push(nums2[j]);</span><br><span class="line">        j++;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> (i &lt; nums1.length) {</span><br><span class="line">      mergedArray.push(...nums1.slice(i));</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-keyword">if</span> (j &lt; nums2.length) {</span><br><span class="line">      mergedArray.push(...nums2.slice(j));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> mergedArray.length % <span class="hljs-number">2</span> === <span class="hljs-number">0</span></span><br><span class="line">      ? (mergedArray[mergedArray.length / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>] + mergedArray[mergedArray.length / <span class="hljs-number">2</span>]) / <span class="hljs-number">2</span></span><br><span class="line">      : mergedArray[(mergedArray.length - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>算是簡化版的 merge sort 寫法，<code>while loop</code> 比較 <code>nums1</code> 與 <code>nums2</code> 的大小，當 <code>i</code>, <code>j</code> 其中一個指針已經比較完，代表另一個數列剩下的數都是更大的值，直接推進 <code>mergedArray</code> 就完成兩個數列的合併。需要注意的是 <code>nums1</code> 與 <code>nums2</code> 必須是 sorted array，如果兩個陣列都沒有排序過，就要使用 merge sort。</p>
+<h2><span id="arraysort">Array.sort()</span></h2><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> findMedianSortedArrays = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nums1, nums2</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">let</span> merged = [...nums1, ...nums2]</span><br><span class="line">  merged.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b)</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">return</span> merged.length % <span class="hljs-number">2</span> === <span class="hljs-number">0</span></span><br><span class="line">    ? (merged[merged.length / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>] + merged[merged.length / <span class="hljs-number">2</span>]) / <span class="hljs-number">2</span></span><br><span class="line">    : merged[(merged.length - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>簡單快速，覺得好像沒什麼好紀錄的。有時候看過一些題目有明確限制不能使用原生的 methods，但這題沒有所以直接用 <code>sort()</code> 也可以成功的 submission。</p>
+<h2><span id="after-submission">After Submission</span></h2><p>Submission 之後看到的效能數字其實沒有很好，大概都在 50% 以下。但是同一個解答多提交幾次發現效能數字落差蠻大的，我猜可能是有 random test case。我還是去看了一下 Runtime 與 Memory 效能較優異的寫法，發現 Runtime 表現較好的就是使用 Array.sort()，發現 Runtime 表現較好的就是 Pointer 的寫法，而且跟我寫的邏輯幾乎一樣，沒有太大的差異。</p>
+<h2><span id="總結">總結</span></h2><p>思考的時候其實有點懷疑，題目是給兩個 sorted array，會不會給兩個 random array 更能符合 Hard 的等級。如果是 random array 其實就很明確是想考 Merge Sort？不過其實不管有沒有先 sorted，第二種方式其實都能完成功能。</p>
+<p>題外話，這讓我想到一個有趣的問題：JavaScript 到底是用哪一種演算法實作 <code>sort()</code>？結果讓我發現了一個新名詞 <a target="_blank" rel="noopener" href="https://yuanchieh.page/posts/2019/2019-08-09_v8-%E5%85%A7%E7%9A%84%E6%8E%92%E5%BA%8F%E6%BC%94%E7%AE%97%E6%B3%95-timsort/">TimSort</a>。稍微看了一下別人的分析，很有趣！但應該不是現階段的我能夠 handle 的，有機會再來讀看看 source code。</p>
+<!-- ![截圖 2022-01-19 下午2.49.47.png](https://raw.githubusercontent.com/memorysd2013/blog-img/main/%E6%88%AA%E5%9C%96%202022-01-19%20%E4%B8%8B%E5%8D%882.49.47.png) -->
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/algorithm/">#algorithm</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/leetcode/">#leetcode</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/front-end/">#front-end</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2022/01/12/leetcode-longest-substring-without-repeating-characters/">[解題筆記] LeetCode: Longest Substring Without Repeating Characters (Medium)</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2022 Evan&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站內搜尋" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '頁面',
+                CATEGORIES: '分類',
+                TAGS: '標籤',
+                UNTITLED: '(無標題)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
