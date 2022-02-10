@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>標籤: algorithm - Evan</title>
+<title>改變 this 的指向——call()、apply() 與 bind() - Evan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -18,16 +18,20 @@
 
 
 
-    <meta name="description" content="網站描述">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Evan">
-<meta property="og:url" content="https://memorysd2013.github.io/tags/algorithm/index.html">
+    <meta name="description" content="前言在 JavaScript 中要呼叫一個 function 可以這麼做 foo()，也可以使用 function 的 methods call、apply、bind    call定義使用給定的 this 參數以及分別給定的參數來呼叫某個函數 applybindbind 並不會直接呼叫 function，而是複製 function 並且可以帶入 this。 12345coo()if (y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="改變 this 的指向——call()、apply() 與 bind()">
+<meta property="og:url" content="https://memorysd2013.github.io/2022/01/01/javascript-call-apply-bind/index.html">
 <meta property="og:site_name" content="Evan">
-<meta property="og:description" content="網站描述">
+<meta property="og:description" content="前言在 JavaScript 中要呼叫一個 function 可以這麼做 foo()，也可以使用 function 的 methods call、apply、bind    call定義使用給定的 this 參數以及分別給定的參數來呼叫某個函數 applybindbind 並不會直接呼叫 function，而是複製 function 並且可以帶入 this。 12345coo()if (y">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://picsum.photos/id/178/1280/720">
+<meta property="article:published_time" content="2022-01-01T13:20:22.739Z">
+<meta property="article:modified_time" content="2022-01-25T08:06:03.882Z">
 <meta property="article:author" content="Evan">
 <meta property="article:tag" content="Javascript, html, CSS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picsum.photos/id/178/1280/720">
 
 
 
@@ -117,126 +121,81 @@
     </div>
 </nav>
 
-    <section class="section section-heading">
+    <section class="section">
     <div class="container">
-        <div class="content">
-            <h5>#algorithm</h5>
-        </div>
-    </div>
-</section>
-<section class="section">
-    <div class="container">
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
+    <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/2022/02/01/leetcode-longest-palindromic-substring/" itemprop="url">[解題筆記] LeetCode: Longest Palindromic Substring</a>
+            改變 this 的指向——call()、apply() 與 bind()
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <span>2022年02月01日</span>
+                <span>2022年01月01日</span>
             
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/front-end/">front-end</a>
+            <a class="article-category-link" href="/categories/javascript/">javascript</a>
         </span>
         
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2></body></html>
-        <p class="article-more-link">
-            <a href="/2022/02/01/leetcode-longest-palindromic-substring/#more">閱讀更多</a>
-        </p>
+        <html><head></head><body><p><img src="https://picsum.photos/id/178/1280/720" alt="Photo from Thanun Buranapong"></p>
+<!-- ## this 與我
+
+這篇文章沒有打算提太多「this」，但在 JavaScript 提到「this」只要是前端工程師一定有許多感觸。我無法忘記第一次看到 `let self = this` 不禁懷疑 JavaScript 真的是我學得會的語言嗎？
+
+> 作為物件導向的語言 JavaScript，原生的 Function 有三個可以改變 this 指向的 methods —— `call()`、`apply()`、`bind()`。
+
+這個定義在我學習 JavaScript 初期就看到了，但我不理解明明 `()` 就可以執行 function 為什麼還需要三個不同的 methods 來做一樣的事。我經歷了幾個階段直到真正理解這段定義：
+
+一開始不太了解 this 是什麼，看到別人怎麼寫就跟著怎麼寫；接著讀了許多有關 this 的文章，大部分也都會提到 call、apply、bind，進入一個似懂非懂的階段；直到開始用了幾次 `call()`、`apply()`、`bind()` 漸漸發現它們的差異，又慢慢接觸到 Functional Programming、Currying ⋯ 開始有更深刻的理解，發現自己對程式碼的靈活性有更近一步的掌握。
+
+我知道總有一天需要寫一篇自己對於「this」的理解，不過我想先從 `call()`、`apply()`、`bind()` 開始說起，算是作為漫長前端路途的一個紀錄點。 -->
+<!-- mmmore -->
+
+<h2><span id="前言">前言</span></h2><p>在 JavaScript 中要呼叫一個 function 可以這麼做 <code>foo()</code>，也可以使用 function 的 methods <code>call</code>、<code>apply</code>、<code>bind</code></p>
+<!-- ```javascript -->
+<!-- ``` -->
+
+<h2><span id="call">call</span></h2><p>定義<br>使用給定的 <code>this</code> 參數以及分別給定的參數來呼叫某個函數</p>
+<h2><span id="apply">apply</span></h2><h2><span id="bind">bind</span></h2><p><code>bind</code> 並不會直接呼叫 function，而是<strong>複製</strong> function 並且可以帶入 this。</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">coo()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> (y === <span class="hljs-built_in">this</span>) {</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(e)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h2><span id="參考資料">參考資料</span></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.huli.tw/2019/02/23/javascript-what-is-this/">淺談 JavaScript 頭號難題 this：絕對不完整，但保證好懂</a> @Huli</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23804247">this 的值到底是什么？一次说清楚</a> @方应杭</li>
+<li><a target="_blank" rel="noopener" href="https://www.udemy.com/course/javascriptjs/">JavaScript 全攻略：克服 JS 的奇怪部分</a> @udemy</li>
+</ul>
+</body></html>
     
     </div>
     
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2022/01/12/leetcode-longest-substring-without-repeating-characters/">[解題筆記] LeetCode: Longest Substring Without Repeating Characters (Medium)</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2021/12/26/question-about-crypto/">加密貨幣研究筆記</a>
+            
+        </span>
+    </div>
     
 </article>
 
 
 
 
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2022/01/19/leetcode-median-of-two-sorted-arrays/" itemprop="url">[解題筆記] LeetCode: Median Of Two Sorted Arrays (Hard)</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            
-                <span>2022年01月19日</span>
-            
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/front-end/">front-end</a>
-        </span>
-        
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直以來都覺得 Medium 的題目好像就蠻難的，所以也沒有刻意想去挑戰 Hard，這次是上次的題目寫完接著寫下一題，寫完覺得沒有真的很難，也許這題是例外吧，總之順手紀錄一下心得。</p></body></html>
-        <p class="article-more-link">
-            <a href="/2022/01/19/leetcode-median-of-two-sorted-arrays/#more">閱讀更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2022/01/12/leetcode-longest-substring-without-repeating-characters/" itemprop="url">[解題筆記] LeetCode: Longest Substring Without Repeating Characters (Medium)</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            
-                <span>2022年01月12日</span>
-            
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/front-end/">front-end</a>
-        </span>
-        
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我其實不太常刷題，這陣子因為面試開始練手感，後來想想只是解題好像有點可惜，應該紀錄一下自己解題的思維，留一個機會讓未來我可以檢視自己有沒有進步；一方面開始練習寫文章，撰文真的好難。</p>
-<p>前一陣子摸了基礎的 counter、pointer 用法之後，以為自己面對一些基礎的 algorithm 應該要秒解才對，結果還是花了比預期還要長的時間。我認為就是還不夠熟練，大部分演算法也不是一個公式就可以帶入得到解答，瞭解特定演算法的思維再判斷不同的情境才能順利解題。</p></body></html>
-        <p class="article-more-link">
-            <a href="/2022/01/12/leetcode-longest-substring-without-repeating-characters/#more">閱讀更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-    
     </div>
 </section>
     <footer class="footer">
