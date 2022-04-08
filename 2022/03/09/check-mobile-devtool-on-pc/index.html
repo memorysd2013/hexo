@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>用電腦查看手機瀏覽器的 DevTools (Safari/Chrome) - Evan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="網站描述">
+
+
+
+<meta name="keywords" content="Javascript, html, CSS">
+
+
+
+    <meta name="description" content="前言工作專案要開發手機版的 PWA 但每次都覺得 chrome devTools 的 device 模式與實際上手機真的跑的樣式都會有些落差，有時候還會遇到瀏覽器 JavaScript 格式不同或是支援性問題（如 new Date 在 safari 上的上的格式要求 等等）所以想紀錄一篇如何用電腦連動手機瀏覽器，打開手機瀏覽器的 devTools。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用電腦查看手機瀏覽器的 DevTools (Safari&#x2F;Chrome)">
+<meta property="og:url" content="https://memorysd2013.github.io/2022/03/09/check-mobile-devtool-on-pc/index.html">
+<meta property="og:site_name" content="Evan">
+<meta property="og:description" content="前言工作專案要開發手機版的 PWA 但每次都覺得 chrome devTools 的 device 模式與實際上手機真的跑的樣式都會有些落差，有時候還會遇到瀏覽器 JavaScript 格式不同或是支援性問題（如 new Date 在 safari 上的上的格式要求 等等）所以想紀錄一篇如何用電腦連動手機瀏覽器，打開手機瀏覽器的 devTools。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://memorysd2013.github.io/img/check-mobile-devtool-on-pc/safari-config1.png">
+<meta property="og:image" content="https://memorysd2013.github.io/img/check-mobile-devtool-on-pc/safari-config2.png">
+<meta property="og:image" content="https://memorysd2013.github.io/img/check-mobile-devtool-on-pc/safari-config3.png">
+<meta property="og:image" content="https://memorysd2013.github.io/img/check-mobile-devtool-on-pc/android-config1.png">
+<meta property="og:image" content="https://memorysd2013.github.io/img/check-mobile-devtool-on-pc/android-config2.png">
+<meta property="og:image" content="https://memorysd2013.github.io/img/check-mobile-devtool-on-pc/chrome-config1.png">
+<meta property="og:image" content="https://memorysd2013.github.io/img/check-mobile-devtool-on-pc/chrome-config2.png">
+<meta property="article:published_time" content="2022-03-09T03:31:28.000Z">
+<meta property="article:modified_time" content="2022-04-08T09:01:46.554Z">
+<meta property="article:author" content="Evan">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="front-end">
+<meta property="article:tag" content="chrome">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="safari">
+<meta property="article:tag" content="ios">
+<meta property="article:tag" content="pwa">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://memorysd2013.github.io/img/check-mobile-devtool-on-pc/safari-config1.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/lioshi.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">文章列表</a>
+            
+            <a class="navbar-item "
+               href="/categories">分類</a>
+            
+            <a class="navbar-item "
+               href="/tags">標籤</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜尋" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-minos">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            用電腦查看手機瀏覽器的 DevTools (Safari/Chrome)
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <span>2022年03月09日</span>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2><span id="前言">前言</span></h2><p>工作專案要開發手機版的 PWA 但每次都覺得 chrome devTools 的 device 模式與實際上手機真的跑的樣式都會有些落差，有時候還會遇到瀏覽器 JavaScript 格式不同或是支援性問題（如 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4310953/invalid-date-in-safari">new Date 在 safari 上的上的格式要求</a> 等等）所以想紀錄一篇如何用電腦連動手機瀏覽器，打開手機瀏覽器的 devTools。</p>
+<span id="more"></span>
+
+<hr>
+<h2><span id="ios-系統-safari">iOS 系統 (Safari)</span></h2><h3><span id="手機端的設定">手機端的設定</span></h3><p>手機端要先開啟 Safari 的「網頁檢閱器」。</p>
+<blockquote>
+<p><strong>設定 &gt; Safari &gt; 進階 &gt; 開啟「網頁檢閱器」</strong></p>
+</blockquote>
+<p>然後就可以用 Safari 開啟目標網頁，接著設定電腦端。</p>
+<p><img src="/img/check-mobile-devtool-on-pc/safari-config1.png"></p>
+<h3><span id="電腦端的設定">電腦端的設定</span></h3><p>開啟 Safari 後看一下頂端的工具列有沒有「開發」的分頁。如果沒有的話須要先開啟開發選單。</p>
+<blockquote>
+<p><strong>點選「Safari」&gt; 偏好設定 &gt; 進階 &gt; 在選單列中顯示「開發」選單</strong></p>
+</blockquote>
+<p>就會看到選單列出現「開發的分頁」</p>
+<p><img src="/img/check-mobile-devtool-on-pc/safari-config2.png"></p>
+<p>此時用傳輸線連接手機與電腦，並通過一些權限設定（會自動跳出詢問）就可以再「開發」分頁找到對應的裝置與分頁。</p>
+<p><img src="/img/check-mobile-devtool-on-pc/safari-config3.png"></p>
+<p>Safari 不愧是新一代 ie ，很多特立獨行的 CSS 樣式或是不支援較新的 Web API。可以查看 devTools 的情況下就可以直接測試手機版上的真實狀況了，如果是使用 PWA 設定將頁面安裝到桌面也可以適用。</p>
+<h3><span id="xcode-simulator">Xcode Simulator</span></h3><p>如果是使用 Mac 其實還可以使用 Xcode 內建的 Simulator 來開啟一個模擬的 iOS 系統，搜尋 Xcode Simulator 就可以看到很多教學文章。測試起來好像是直接在 macOS 上直接建立一個 iOS 確實也是蠻方便的，而且可以切換不同的手機型號來測試不同的 Safari 版本。</p>
+<hr>
+<h2><span id="android-系統-chrome">Android 系統 (Chrome)</span></h2><p>各品牌的 Android 手機都有出自家的瀏覽器，但主流開發還是以 Chrome 為主，PWA 也以 Chrome 的支援度最為完整。</p>
+<h3><span id="手機端的設定">手機端的設定</span></h3><p>手機端的設定蠻有趣的，感覺有點像是找彩蛋一樣依照某些步驟完成隱藏的指令才能開啟「開發者模式」，不同品牌型號的 Android 手機的介面略有差異，但步驟應該都會差不多。</p>
+<blockquote>
+<p><strong>設定 &gt; 關於手機 &gt; 軟體資訊 &gt; 找到「版本號碼」並點擊7下</strong></p>
+</blockquote>
+<p><img src="/img/check-mobile-devtool-on-pc/android-config1.png"></p>
+<p>操作時會有提示告知開發者模式已經開啟，完成後回到「設定」頁就會看到「開發人員選項」的分頁。接著將手機連結傳輸線至電腦就會跳出一些權限相關的問題設定，完成後就開啟 Chrome 並接著設定電腦端。</p>
+<p><img src="/img/check-mobile-devtool-on-pc/android-config2.png"></p>
+<h3><span id="電腦端的設定">電腦端的設定</span></h3><p>打開 Chrome 並輸入網址 <strong>chrome://inspect/#devices</strong> 就可以看到以下畫面，左側選擇 Devices 而且如果有完成手機連線至電腦的權限設定，就可以看到 <strong>Remote Target</strong>。</p>
+<p><img src="/img/check-mobile-devtool-on-pc/chrome-config1.png"></p>
+<p>Remote Target 會列出裝置與裝置開啟的瀏覽器、分頁等資訊，找到開發的分頁後點擊 <font color="#2657C5">inspect</font> 就可以看到裝置畫面與 Chrome 的 devTools，操作就與電腦版的 Chrome 差異不大了。</p>
+<p><img src="/img/check-mobile-devtool-on-pc/chrome-config2.png"></p>
+<hr>
+<h2><span id="總結">總結</span></h2><p>以整體使用體驗來說我覺得 Android/Chrome 雖然前置步驟稍微複雜一點，但提供開發的體驗與完整性是大勝 Safari 的，iOS 連接 mac 與 Safari 很常會明明都連接到了就是不出現開啟中的分頁或偵測不到。但自從可以查看開發者工具後，大部分的 CSS 跑版問題或 JavaScript 支援性問題都可以獲得解決，我覺得算是開發 PWA 必定要知道的技巧之一。</p>
+<h2><span id="參考資料">參考資料</span></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/studio/debug/dev-options">Configure on-device developer options</a> @Android</li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/devtools/remote-debugging/#troubleshooting">Remote debug Android devices</a> @Google</li>
+</ul>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/javascript/">#javascript</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/front-end/">#front-end</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/chrome/">#chrome</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/android/">#android</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/safari/">#safari</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/ios/">#ios</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/pwa/">#pwa</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2022/02/01/leetcode-longest-palindromic-substring/">[解題筆記] LeetCode: Longest Palindromic Substring (Medium)</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2022 Evan&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站內搜尋" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '頁面',
+                CATEGORIES: '分類',
+                TAGS: '標籤',
+                UNTITLED: '(無標題)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
