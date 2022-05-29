@@ -123,7 +123,7 @@
         <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/2022/04/01/portfolio/" itemprop="url">作品集整理</a>
+            <a href="/2022/04/01/portfolio/" itemprop="url">前端作品集</a>
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
@@ -137,76 +137,10 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h2><span id="作品集">作品集</span></h2><h3><span id="臺北捷運路線查詢-trtc-route-map">臺北捷運路線查詢 TRTC Route Map</span></h3><p><img src="/img/portfolio/portfolio1.png" alt="TRTC Route Map"></p>
-<!-- <img src="/img/portfolio/portfolio2.png" width="50%"> -->
-<p>核心功能：</p>
-<ul>
-<li>查詢臺北捷運路線、站別出口資訊</li>
-<li>查詢路線 geojson 搭配 leaflet 呈現在地圖上</li>
-<li>支援社群帳號登入，未來可以擴展使用者面向的功能，站點儲存、查詢記錄等</li>
-</ul>
-<p>使用技術 &amp; Library：</p>
-<ul>
-<li>Vue3 (build with Vite)</li>
-<li>Element Plus (UI framework, element-ui for vue3)</li>
-<li>leaflet.js (maps library)</li>
-<li>Google login api (official sdk)</li>
-<li>Facebook login api (official sdk)</li>
-</ul>
-<p>vue3 推出後試寫的作品，主要想熟悉一下 vue3 的語法與差異性。原本是從某次面試作業指定使用 leaflet 實作 polygon, geojson 相關的功能，後來改成介接捷運資料查詢。</p>
-<p>實作與社群平台提供的 api 互動，從申請 token id、爬 developer docs 實作登入、取得使用者資訊的功能、專案後台的管理等等，熟悉整個流程。</p>
-<p>另外做了一些嘗試，原本的 google login 是看官方文件提供的登入按鈕實作的，相對簡單，後來看到 vue3、react 都支援 hooks 的寫法，對應 vue2 就是 mixins 但是改善了原本可能有的缺點，所以就參考了 <a target="_blank" rel="noopener" href="https://vueuse.org/">VueUse</a> 改寫 google, facebook 的登入、登出相關功能打包成 hooks 的寫法。</p>
-<blockquote>
-<p><strong>臺北捷運路線查詢 TRTC Route Map</strong><br>Github: <a target="_blank" rel="noopener" href="https://github.com/memorysd2013/trtc-route-map">https://github.com/memorysd2013/trtc-route-map</a><br>Demo Site: <a href="https://memorysd2013.github.io/trtc-route-map" target="_blank">https://memorysd2013.github.io/trtc-route-map</a></p>
-</blockquote>
-<h3><span id="vue3-typescript-切版">Vue3 + TypeScript 切版</span></h3><p><img src="/img/portfolio/portfolio3.png" alt="Vue3 + TypeScript 切版"><br>核心功能：</p>
-<ul>
-<li>客制化 Element Plus 樣式</li>
-<li>bar chart, debounce resize</li>
-<li>RWD</li>
-</ul>
-<p>使用技術 &amp; Library：</p>
-<ul>
-<li>Vue3 (build with Vite)</li>
-<li>TypeScript</li>
-<li>Sass</li>
-<li>Element Plus (UI framework, element-ui for vue3)</li>
-<li>Apache ECharts (charts library)</li>
-<li>Day.js</li>
-</ul>
-<p>也是面試作業，自己覺得蠻用心寫的但卻是無聲卡，作業題目是一張 layout 圖片，指定使用 vite + element-plus + typescript 刻出一樣的畫面，盡量考慮 RWD 但不要求功能。</p>
-<p>使用 Apache ECharts 實作長條圖，大部分的組件是 Element Plus 修改 scss 變數或自訂 style 來符合設計稿外觀，RWD 沒有指定尺寸所以以不跑版為主，視窗寬度縮小至 768px 以下時會自訂收合側邊欄以提供更大的主畫面。</p>
-<p>資料的部分使用 Promise 與 Math.random 模擬 api 資料操作，切換畫面的按鈕參數時會自動代換數值。因為開發的時間比較短，理想中是 api function 分離的更清楚，當有測試或實際可使用的 api 只需要指定 api 路徑就可以套用整個專案。</p>
-<p>圖表組件一樣練習用 hooks 的寫法 (src/hook/useBar.ts) 管理圖表的生命週期，並暴露一個 resize 的 function 來達成圖表 RWD。resize 綁定在 window resize 的 event 上，並使用 debounce 來避免視窗尺寸變動時連續觸發太多次事件，預設防抖 500 毫秒後才會觸發 resize。</p>
-<blockquote>
-<p><strong>Vue3 + TypeScript 切版</strong><br>Github: <a target="_blank" rel="noopener" href="https://github.com/memorysd2013/ts-layout">https://github.com/memorysd2013/ts-layout</a><br>Demo Site: <a href="https://memorysd2013.github.io/ts-layout" target="_blank">https://memorysd2013.github.io/ts-layout</a></p>
-</blockquote>
-<hr>
-<h2><span id="side-project">Side Project</span></h2><h3><span id="eq-calendar-vue2">eq-calendar-vue2</span></h3><p><img src="/img/portfolio/portfolio4.png" alt="eq-calendar-vue2"><br>核心功能：</p>
-<ul>
-<li>客製化日曆、週曆、月曆組件，支援 RWD</li>
-<li>使用 Vue slot 可以在組件內放入自訂內容</li>
-</ul>
-<p>使用技術 &amp; Library：</p>
-<ul>
-<li>Vue2</li>
-<li>Day.js</li>
-</ul>
-<p>用於公司內部專案的班表系統，因為需要客製化功能與樣式，所以就不使用現有套件選擇直接重刻。發布至 npm 主要是管理讓公司內部多個專案使用。</p>
-<blockquote>
-<p><strong>eq-calendar-vue2</strong><br>Github: <a target="_blank" rel="noopener" href="https://github.com/memorysd2013/eq-calendar-vue2">https://github.com/memorysd2013/eq-calendar-vue2</a><br>npm: <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/eq-calendar-vue2">https://www.npmjs.com/package/eq-calendar-vue2</a></p>
-</blockquote>
-<!-- Demo Site -->
-
-<hr>
-<h2><span id="codepen">Codepen</span></h2><h3><span id="memory-match-game-with-vue3">Memory Match Game with Vue3</span></h3><p>試玩 Vue3 寫出來的小東西。</p>
-<iframe src="https://codepen.io/gretema/embed/RwLGPoL?height=265&amp;theme-id=default&amp;default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen=""></iframe>
-
-<h3><span id="bubble-sort-animation">Bubble Sort Animation</span></h3><p>前一陣子接觸入門演算法時看到很多網站用動畫去解釋排序法，覺得蠻有趣的，於是用氣泡排序法試著寫看看。只用 JavaScript 沒有用任何框架套件，動畫用 CSS transform 實現。</p>
-<iframe src="https://codepen.io/gretema/embed/KKXWwMz?height=265&amp;theme-id=default&amp;default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen=""></iframe>
-
-<h3><span id="quicksort-practice-with-vue3">Quicksort Practice with Vue3</span></h3><p>剛接觸 Quicksort 的時候沒有很懂整個邏輯，於是也試著自己寫一遍。</p>
-<iframe src="https://codepen.io/gretema/embed/VwMXVYb?height=265&amp;theme-id=default&amp;default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen=""></iframe></body></html>
+        <html><head></head><body><p>整理了寫過的一些專案、作品，紀錄使用的技術與心得</p></body></html>
+        <p class="article-more-link">
+            <a href="/2022/04/01/portfolio/#more">閱讀更多</a>
+        </p>
     
     </div>
     
