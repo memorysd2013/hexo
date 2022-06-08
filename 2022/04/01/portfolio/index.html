@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://memorysd2013.github.io/img/portfolio/portfolio3.png">
 <meta property="og:image" content="https://memorysd2013.github.io/img/portfolio/portfolio4.png">
 <meta property="article:published_time" content="2022-04-01T13:29:06.000Z">
-<meta property="article:modified_time" content="2022-05-29T16:58:53.402Z">
+<meta property="article:modified_time" content="2022-06-08T02:14:35.403Z">
 <meta property="article:author" content="Evan">
 <meta property="article:tag" content="Javascript, html, CSS">
 <meta name="twitter:card" content="summary">
@@ -182,7 +182,7 @@
 <li>Apache ECharts (charts library)</li>
 <li>Day.js</li>
 </ul>
-<p>也是面試作業，自己覺得蠻用心寫的但卻是無聲卡，作業題目是一張 layout 圖片，指定使用 vite + element-plus + typescript 刻出一樣的畫面，盡量考慮 RWD 但不要求功能。</p>
+<p>也是面試作業之一。作業題目是一張 layout 圖片，指定使用 vite + element-plus + typescript 刻出一樣的畫面，盡量考慮 RWD 但沒有要求特殊功能。</p>
 <p>使用 Apache ECharts 實作長條圖，大部分的組件是 Element Plus 修改 scss 變數或自訂 style 來符合設計稿外觀，RWD 沒有指定尺寸所以以不跑版為主，視窗寬度縮小至 768px 以下時會自訂收合側邊欄以提供更大的主畫面。</p>
 <p>資料的部分使用 Promise 與 Math.random 模擬 api 資料操作，切換畫面的按鈕參數時會自動代換數值。因為開發的時間比較短，理想中是 api function 分離的更清楚，當有測試或實際可使用的 api 只需要指定 api 路徑就可以套用整個專案。</p>
 <p>圖表組件一樣練習用 hooks 的寫法 (src/hook/useBar.ts) 管理圖表的生命週期，並暴露一個 resize 的 function 來達成圖表 RWD。resize 綁定在 window resize 的 event 上，並使用 debounce 來避免視窗尺寸變動時連續觸發太多次事件，預設防抖 500 毫秒後才會觸發 resize。</p>
