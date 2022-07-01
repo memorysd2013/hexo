@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Evan&#39;s developer journey</title>
+<title>promise - Evan&#39;s developer journey</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -18,13 +18,15 @@
 
 
 
-    <meta name="description" content="這是 Evan 的小天地，紀錄一些前端開發的筆記或是心得。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Evan&#39;s developer journey">
-<meta property="og:url" content="https://memorysd2013.github.io/index.html">
+    <meta name="description" content="整理一些 Promise 相關的觀念與問題。文內節錄自 promise 問題集 重點整理  瀏覽器的 window 有一個 Promise，可以直接使用 .resolve .reject .race .all。 一般建立 Promise 需要用 new 並且需要指定 resolve 否則會報錯。 Promise.then 只有在 resolve 被執行後才會執行（.catch 同理）。 .fin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="promise">
+<meta property="og:url" content="https://memorysd2013.github.io/2022/06/26/promise/index.html">
 <meta property="og:site_name" content="Evan&#39;s developer journey">
-<meta property="og:description" content="這是 Evan 的小天地，紀錄一些前端開發的筆記或是心得。">
+<meta property="og:description" content="整理一些 Promise 相關的觀念與問題。文內節錄自 promise 問題集 重點整理  瀏覽器的 window 有一個 Promise，可以直接使用 .resolve .reject .race .all。 一般建立 Promise 需要用 new 並且需要指定 resolve 否則會報錯。 Promise.then 只有在 resolve 被執行後才會執行（.catch 同理）。 .fin">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-06-26T15:28:00.000Z">
+<meta property="article:modified_time" content="2022-07-01T08:23:11.981Z">
 <meta property="article:author" content="Evan Ke">
 <meta property="article:tag" content="Javascript, html, CSS">
 <meta name="twitter:card" content="summary">
@@ -131,11 +133,10 @@
 
     <section class="section">
     <div class="container">
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
+    <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/2022/06/26/promise/" itemprop="url">promise</a>
+            promise
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
@@ -222,233 +223,22 @@
     </div>
     
     
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2022/04/01/portfolio/" itemprop="url">前端作品集</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            
-                <span>2022年04月01日</span>
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
             
         </span>
-        
-        
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2022/04/01/portfolio/">前端作品集</a>
+            
+        </span>
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>整理了寫過的一些專案、作品，紀錄使用的技術與心得</p></body></html>
-        <p class="article-more-link">
-            <a href="/2022/04/01/portfolio/#more">閱讀更多</a>
-        </p>
-    
-    </div>
-    
     
 </article>
 
 
 
 
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2022/03/09/check-mobile-devtool-on-pc/" itemprop="url">前端開發如何查看手機瀏覽器的 DevTools (Safari, Chrome)</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            
-                <span>2022年03月09日</span>
-            
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/front-end/">front-end</a>
-        </span>
-        
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>工作專案要開發手機版的 PWA 但每次都覺得 chrome devTools 的 device 模式與實際上手機真的跑的樣式都會有些落差，有時候還會遇到瀏覽器 JavaScript 格式不同或是支援性問題（如 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4310953/invalid-date-in-safari">new Date 在 safari 上的上的格式要求</a> 等等）所以想紀錄一篇如何用電腦連動手機瀏覽器，打開手機瀏覽器的 devTools。</p></body></html>
-        <p class="article-more-link">
-            <a href="/2022/03/09/check-mobile-devtool-on-pc/#more">閱讀更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2022/02/01/leetcode-longest-palindromic-substring/" itemprop="url">[解題筆記] LeetCode: Longest Palindromic Substring (Medium)</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            
-                <span>2022年02月01日</span>
-            
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/front-end/">front-end</a>
-        </span>
-        
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>Given a string <code>s</code>, return the longest palindromic substring in <code>s</code>.</p>
-<p><strong>Example 1:</strong></p>
-<blockquote>
-<p><strong>Input:</strong> s = “babad”<br><strong>Output:</strong> “bab”<br><strong>Explanation:</strong> “aba” is also a valid answer.</p>
-</blockquote>
-<p><strong>Example 2:</strong></p>
-<blockquote>
-<p><strong>Input:</strong> s = “cbbd”<br><strong>Output:</strong> “bb”</p>
-</blockquote></body></html>
-        <p class="article-more-link">
-            <a href="/2022/02/01/leetcode-longest-palindromic-substring/#more">閱讀更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2022/01/19/leetcode-median-of-two-sorted-arrays/" itemprop="url">[解題筆記] LeetCode: Median Of Two Sorted Arrays (Hard)</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            
-                <span>2022年01月19日</span>
-            
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/front-end/">front-end</a>
-        </span>
-        
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直以來都覺得 Medium 的題目好像就蠻難的，所以也沒有刻意想去挑戰 Hard，這次是上次的題目寫完接著寫下一題，寫完覺得沒有真的很難，也許這題是例外吧，總之順手紀錄一下心得。</p></body></html>
-        <p class="article-more-link">
-            <a href="/2022/01/19/leetcode-median-of-two-sorted-arrays/#more">閱讀更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2022/01/12/leetcode-longest-substring-without-repeating-characters/" itemprop="url">[解題筆記] LeetCode: Longest Substring Without Repeating Characters (Medium)</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            
-                <span>2022年01月12日</span>
-            
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/front-end/">front-end</a>
-        </span>
-        
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我其實不太常刷題，這陣子因為面試開始練手感，後來想想只是解題好像有點可惜，應該紀錄一下自己解題的思維，留一個機會讓未來我可以檢視自己有沒有進步；一方面開始練習寫文章，撰文真的好難。</p>
-<p>前一陣子摸了基礎的 counter、pointer 用法之後，以為自己面對一些基礎的 algorithm 應該要秒解才對，結果還是花了比預期還要長的時間。我認為就是還不夠熟練，大部分演算法也不是一個公式就可以帶入得到解答，瞭解特定演算法的思維再判斷不同的情境才能順利解題。</p></body></html>
-        <p class="article-more-link">
-            <a href="/2022/01/12/leetcode-longest-substring-without-repeating-characters/#more">閱讀更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2021/12/26/question-about-crypto/" itemprop="url">加密貨幣研究筆記</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            
-                <span>2021年12月26日</span>
-            
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/crypto/">crypto</a>
-        </span>
-        
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <!-- ### 前言 --><!-- 有鑿於想了解加密貨幣卻發現自己根本一竅不通、還有超多縮寫，於是打算以蒐集問題的方式補足加密貨幣方面的知識。這邊只打算做最基礎的名詞解釋，如果有更詳細的延伸內容會另外研究 --><html><head></head><body><p><img src="https://picsum.photos/id/679/1280/720" alt="Lorem Picsum from Len dela Cruz"></p></body></html>
-        <p class="article-more-link">
-            <a href="/2021/12/26/question-about-crypto/#more">閱讀更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-    
     </div>
 </section>
     <footer class="footer">

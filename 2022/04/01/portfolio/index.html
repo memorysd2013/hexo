@@ -29,8 +29,9 @@
 <meta property="og:image" content="https://memorysd2013.github.io/img/portfolio/portfolio2.png">
 <meta property="og:image" content="https://memorysd2013.github.io/img/portfolio/portfolio3.png">
 <meta property="og:image" content="https://memorysd2013.github.io/img/portfolio/portfolio4.png">
+<meta property="og:image" content="https://memorysd2013.github.io/img/portfolio/portfolio5.png">
 <meta property="article:published_time" content="2022-04-01T13:29:06.000Z">
-<meta property="article:modified_time" content="2022-06-08T02:14:35.403Z">
+<meta property="article:modified_time" content="2022-07-01T16:18:13.795Z">
 <meta property="article:author" content="Evan Ke">
 <meta property="article:tag" content="Javascript, html, CSS">
 <meta name="twitter:card" content="summary">
@@ -217,20 +218,38 @@
 <p><strong>eq-calendar-vue2</strong><br>Github: <a target="_blank" rel="noopener" href="https://github.com/memorysd2013/eq-calendar-vue2">https://github.com/memorysd2013/eq-calendar-vue2</a><br>Demo Site: <a href="https://memorysd2013.github.io/eq-calendar-vue2" target="_blank">https://memorysd2013.github.io/eq-calendar-vue2</a><br>npm: <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/eq-calendar-vue2">https://www.npmjs.com/package/eq-calendar-vue2</a></p>
 </blockquote>
 <hr>
-<h2><span id="codepen">Codepen</span></h2><h3><span id="memory-match-game-with-vue3">Memory Match Game with Vue3</span></h3><p>試玩 Vue3 寫出來的小東西，自己蠻喜歡的。</p>
+<h2><span id="others">Others</span></h2><h3><span id="google-extension-youtube-transmission">Google Extension: Youtube Transmission</span></h3><p><img src="/img/portfolio/portfolio5.png" alt="Youtube Transmission"></p>
+<p>核心功能：</p>
+<ul>
+<li>抓取網頁中 youtube 影片元素可以自訂加/減速、迴圈播放等。</li>
+</ul>
+<p>使用技術：</p>
+<ul>
+<li>HTML, CSS, JavaScript</li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/extensions/">Google Extension Docs</a></li>
+</ul>
+<p>無意間看到 Google Extension 的教學文章，花了一些時間研究後完成的作品。想法發想是我自己常使用 youtube 的影片來練習吉他，因為要靠耳朵聽出和弦或是樂句，很常依賴 youtube 的設定/播放速度來放慢速度。youtube 提供的選項只有 0.75、0.5、0.25 (後來發現其實可以自訂)，於是我就想做出可以選擇更小單位的速度調節插件，時間區間重複播放的功能也蠻常用到的，就試著把迴圈功能加上。</p>
+<p>插件本身可以視為一個獨立的頁面，透過 message 或是 contect 的方式與主網頁互動，這樣的溝通方式我覺得跟 worker 有一點像。因為可以直接跟主網頁互動，所以其實限制蠻多的，比如沒辦法輕易地把 function 拆分成很多 js 檔再引入，與主網頁的互動也需要在 manifest 設定權限，並在發布時描述申請這些權限的用意。</p>
+<p>這次開發除了累積閱讀英文文件的經驗以外，另一個給我比較大的收穫是 UX 的部分，因為自己就是使用者，完全地以實際使用的情況、會遇到的問題、怎麼樣的體驗或是流程是自己需要的方向去開發跟思考。作品完成上架後，我也分享給朋友使用並得到一些回饋，讓我覺得蠻有成就感的，雖然不是很困難或很複雜的作品，但可以實際得到使用者回饋是一個蠻特別的體驗。</p>
+<blockquote>
+<p><strong>Youtube Transmission</strong><br>Github: <a target="_blank" rel="noopener" href="https://github.com/memorysd2013/youtube-transmission">https://github.com/memorysd2013/youtube-transmission</a><br>Google webstore: <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/youtube-transmission/jaaokfelcbloneeeaanalpkealibhfan?hl=zh-TW">https://chrome.google.com/webstore/detail/youtube-transmission/jaaokfelcbloneeeaanalpkealibhfan?hl=zh-TW</a></p>
+</blockquote>
+<h3><span id="codepen-memory-match-game-with-vue3">Codepen: Memory Match Game with Vue3</span></h3><p>試玩 Vue3 寫出來的小東西，自己蠻喜歡的。</p>
 <iframe src="https://codepen.io/gretema/embed/RwLGPoL?height=265&amp;theme-id=default&amp;default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen=""></iframe>
 
-<h3><span id="bubble-sort-animation">Bubble Sort Animation</span></h3><p>前一陣子接觸入門演算法時看到很多網站用動畫去解釋排序法，覺得蠻有趣的，於是用氣泡排序法試著寫看看。只用 JavaScript 沒有用任何框架套件，動畫用 CSS transform 實現。</p>
+<h3><span id="codepen-bubble-sort-animation">Codepen: Bubble Sort Animation</span></h3><p>前一陣子接觸入門演算法時看到很多網站用動畫去解釋排序法，覺得蠻有趣的，於是用氣泡排序法試著寫看看。只用 JavaScript 沒有用任何框架套件，動畫用 CSS transform 實現。</p>
 <iframe src="https://codepen.io/gretema/embed/KKXWwMz?height=265&amp;theme-id=default&amp;default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen=""></iframe>
 
-<h3><span id="quicksort-practice-with-vue3">Quicksort Practice with Vue3</span></h3><p>剛接觸 Quicksort 的時候沒有很懂整個邏輯，於是也試著自己寫一遍。</p>
+<h3><span id="codepen-quicksort-practice-with-vue3">Codepen: Quicksort Practice with Vue3</span></h3><p>剛接觸 Quicksort 的時候沒有很懂整個邏輯，於是也試著自己寫一遍。</p>
 <iframe src="https://codepen.io/gretema/embed/VwMXVYb?height=265&amp;theme-id=default&amp;default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen=""></iframe></body></html>
     
     </div>
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2022/06/26/promise/">promise</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
