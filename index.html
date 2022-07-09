@@ -156,7 +156,9 @@
 <li>一般建立 Promise 需要用 <code>new</code> 並且需要指定 <code>resolve</code> 否則會報錯。</li>
 <li><code>Promise.then</code> 只有在 <code>resolve</code> 被執行後才會執行（<code>.catch</code> 同理）。</li>
 <li><code>.finally</code> 有 <code>resolve</code> 或 <code>reject</code> 執行後會跟著執行，換句話說沒有執行 <code>resolve</code> 或 <code>reject</code>，<code>finally</code> 也不會執行。</li>
-<li></li>
+<li><code>.then</code> 和 <code>.catch</code> 都會返回一個新的 Promise。所以<code>.then</code> 或 <code>.catch</code> 返回的值不能是 Promise 本身，否則會造成死循環。</li>
+<li><code>.then</code> 可以傳入兩個 <code>function</code>，第二個 <code>function</code> 可以視為是 <code>.catch</code> 的簡寫。但如果傳入非 <code>function</code> 會發生透傳。(question3-5)</li>
+<li><code>.finally</code> 不接受任何的參數，也就是在 <code>.finally</code> 中是無法知道P romise 最終的狀態是 resolved 還是 rejected。</li>
 </ul></body></html>
         <p class="article-more-link">
             <a href="/2022/06/26/promise/#more">閱讀更多</a>
